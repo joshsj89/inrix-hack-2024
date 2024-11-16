@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "7aeeca0a-6703-4c64-a680-d03a9b4a9822",
+		"name": "INRIX Access",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24393295"
+	},
+	"item": [
+		{
+			"name": "Security Token API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://na-api.beta.inrix.com/Traffic/Inrix.ashx?Action=GetSecurityToken&vendorId=1680049421&consumerId=3466e4ef-329b-474f-b52b-a3818e9df6b6&format=json",
+					"protocol": "https",
+					"host": [
+						"na-api",
+						"beta",
+						"inrix",
+						"com"
+					],
+					"path": [
+						"Traffic",
+						"Inrix.ashx"
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "GetSecurityToken"
+						},
+						{
+							"key": "vendorId",
+							"value": "1680049421"
+						},
+						{
+							"key": "consumerId",
+							"value": "3466e4ef-329b-474f-b52b-a3818e9df6b6"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cameras In A Box API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://na-api.beta.inrix.com/Traffic/Inrix.ashx?action=GetTrafficCamerasInBox&locale=en-US&corner1=47.636521|-122.321498&corner2=47.648940|-122.280300&token=YOUR TOKEN HERE",
+					"protocol": "https",
+					"host": [
+						"na-api",
+						"beta",
+						"inrix",
+						"com"
+					],
+					"path": [
+						"Traffic",
+						"Inrix.ashx"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "GetTrafficCamerasInBox"
+						},
+						{
+							"key": "locale",
+							"value": "en-US"
+						},
+						{
+							"key": "corner1",
+							"value": "47.636521|-122.321498"
+						},
+						{
+							"key": "corner2",
+							"value": "47.648940|-122.280300"
+						},
+						{
+							"key": "token",
+							"value": "YOUR TOKEN HERE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camera Image API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://na-api.beta.inrix.com/Traffic/Inrix.ashx?Action=GetTrafficCameraImage&Token=YOUR TOKEN HERE&CameraID=976&DesiredWidth=640&DesiredHeight=480",
+					"protocol": "https",
+					"host": [
+						"na-api",
+						"beta",
+						"inrix",
+						"com"
+					],
+					"path": [
+						"Traffic",
+						"Inrix.ashx"
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "GetTrafficCameraImage"
+						},
+						{
+							"key": "Token",
+							"value": "YOUR TOKEN HERE"
+						},
+						{
+							"key": "CameraID",
+							"value": "976"
+						},
+						{
+							"key": "DesiredWidth",
+							"value": "640"
+						},
+						{
+							"key": "DesiredHeight",
+							"value": "480"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
