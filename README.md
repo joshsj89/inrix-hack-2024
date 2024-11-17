@@ -9,7 +9,7 @@ Our product provides a more organized alternative for litter collection and stre
 ## How users can get started with the project
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start-all-dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -21,7 +21,7 @@ You may also see any lint errors in the console.
 
 Josh Kindarara
 Beatrice Hackman
-Ethan Sychango
+Ethan Sychangco
 Hilary Le
 Alex Lopes
-Hugo Muro-Avila
+Hugo Muro Avila
