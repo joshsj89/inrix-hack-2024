@@ -5,18 +5,14 @@ nav {
     width: 95%;
     padding: 20px 20px;
     display: flex;
-    align-items: center;
-    /* Vertically center items in the navbar */
-    justify-content: space-between;
-    /* Align the content to the left */
+    align-items: center; /* Vertically center items in the navbar */
+    justify-content: space-between; /* Align the content to the left */
 }
 
 /* Logo styling */
 .logo {
-    width: 50px;
-    /* Set your desired width */
-    height: auto;
-    /* Maintain aspect ratio */
+    width: 50px; /* Set your desired width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Navbar list */

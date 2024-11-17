@@ -27,8 +27,7 @@
 
 /* Dropdown menu container */
 .dropdown {
-    padding-left: 20px;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 
@@ -37,12 +36,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px;
+    padding: 10px;
     font-size: 16px;
     background-color: #e0e0e0;
     color: black;
-    margin-bottom: 5px;
-    border-radius: 3px;
+    margin-bottom: 10px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
