@@ -35,6 +35,21 @@ function SideBar() {
 
     return (
         <div className="sidebar">
+            <div style={{display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20}}>
+                <span style={{fontSize: 20, marginVertical: 20}}>Marker Key</span>
+                <div className="statusKey">
+                    <div style={{backgroundColor: 'yellow'}} className="statusColor"></div>
+                    <span>1 piece of trash</span>
+                </div>
+                <div className="statusKey">
+                    <div style={{backgroundColor: 'orange'}} className="statusColor"></div>
+                    <span>2 to 3 pieces of trash</span>
+                </div>
+                <div className="statusKey">
+                    <div style={{backgroundColor: 'red'}} className="statusColor"></div>
+                    <span>4+ pieces of trash</span>
+                </div>
+            </div>
             {/* Dropdown for Cities */}
             <Dropdown
                 title="City"

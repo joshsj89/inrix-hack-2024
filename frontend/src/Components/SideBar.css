@@ -7,3 +7,14 @@
     margin: auto 10px;
     border-radius: 13px;
 }
+
+.statusColor{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.statusKey{
+    display: flex;
+    gap: 10px;
+}
