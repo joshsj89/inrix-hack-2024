@@ -27,8 +27,7 @@ client = boto3.client(
 model_id = "us.meta.llama3-2-90b-instruct-v1:0" 
 
 # The message you want to send to the model
-def invoke_bedrock(message):
-    user_message = "Say hello back to me"
+def invoke_bedrock(request):
 
     # conversation = [
     #     {
@@ -36,6 +35,8 @@ def invoke_bedrock(message):
     #         "content": [{"text": user_message}],
     #     }
     # ]
+
+    imgBytes = request.data
 
     with open('TRASH.jpeg', 'rb') as image_file:
         encoded_image = image_file.read()
@@ -48,7 +49,7 @@ def invoke_bedrock(message):
                 "text": "You will receive an image. Return a single JSON object with this format: {what_I_see: string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else."
             },
             {
-                "image": {"format": "jpeg", "source": {"bytes": encoded_image}}},
+                "image": {"format": "jpeg", "source": {"bytes": imgBytes}}},
         ]
     }
     ]

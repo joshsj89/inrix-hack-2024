@@ -13,10 +13,11 @@ def hello_world():
 
 
 # Example URL: localhost:3000/bedrock-req
-@app.route("/bedrock-req")
+@app.route("/bedrock-req", methods = ['POST'])
 def bedrock_req():
-    return "I got your request"
-    # return invoke_bedrock("dummy")
+    # print(request.data)
+    # return "I got your request"
+    return invoke_bedrock(request)
 
 
 if __name__ == "__main__":

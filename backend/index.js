@@ -75,9 +75,22 @@ app.get('/camera-image', getToken, async (req, res) => {
 
     const image = await getCameraImage(token, cameraId);
 
-    // res.json({ image });
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.send(image);
+
+    // res.setHeader('Content-Type', 'image/jpeg');
+    // res.send(image);
+
+    // send request to 127.0.0.1:3000/bedrock-req img = image
+    const response = await fetch("http://localhost:3000/bedrock-req", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'image/jpeg'
+        },
+        body: image
+    });
+
+    const data = await response.text();
+    console.log(data);
+    res.json(data);
 });
 
 // Example URL: localhost:3000/cameras-radius?token=TOKEN&center=LAT|LONG&radius=RAD
