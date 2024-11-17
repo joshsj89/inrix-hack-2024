@@ -1,0 +1,33 @@
+.menu-header {
+    align-items: center;
+    background-color: aqua;
+}
+
+div.menu-header:hover {
+    background-color: aqua;
+}
+
+/*
+.dropdown {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    
+}
+
+.dropdown-item input {
+    margin-right: 5px;
+}
+
+*/

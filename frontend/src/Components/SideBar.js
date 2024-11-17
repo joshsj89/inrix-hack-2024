@@ -27,15 +27,15 @@ function SideBar() {
 
     // Define another list of options for the second dropdown (example)
     const menuOptions = [
-        { value: "submenu2_1", label: "Submenu 2.1" },
-        { value: "submenu2_2", label: "Submenu 2.2" },
+        { value: "submenu2_1", label: "Submenu 2.1", disabled: false },
+        { value: "submenu2_2", label: "Submenu 2.2", disabled: false },
     ];
 
     return (
         <div className="sidebar">
             {/* Dropdown for Cities */}
             <Dropdown
-                title="Select City"
+                title="City"
                 name="dropdown1"
                 options={cities}
                 selectedValue={selectedItems.dropdown1}

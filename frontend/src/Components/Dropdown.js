@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-function Dropdown({ title, name, options, selectedValue, onChange }) {
+function Dropdown({ title, options, selectedValue, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="menu">
-            <div className="menu-item" onClick={() => setIsOpen(!isOpen)}>
-                {title}
+            <div className="menu-header" onClick={() => { setIsOpen(!isOpen); console.log("Menu clicked!"); }}>
+                <div>{title}</div> {/* Menu Header */}
+                <div className="arrow">{isOpen ? "▲" : "▼"}</div> {/* Arrow */}
             </div>
             {isOpen && (
                 <div className="dropdown">
@@ -14,7 +15,6 @@ function Dropdown({ title, name, options, selectedValue, onChange }) {
                         <label key={option.value} className="dropdown-item">
                             <input
                                 type="radio"
-                                name={name}
                                 value={option.value}
                                 checked={selectedValue === option.value}
                                 onChange={onChange}
