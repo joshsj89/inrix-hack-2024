@@ -4,21 +4,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 function Dropdown({ title, options, selectedValue, onChange, name }) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true); // Default to true for auto-open
 
     const handleOptionSelect = (optionValue, isDisabled) => {
-        if (isDisabled) return;  // Prevent selection of disabled options
+        if (isDisabled) return; // Prevent selection of disabled options
 
-        if (selectedValue !== optionValue) {  // Only update if it's a different option
+        if (selectedValue !== optionValue) { // Only update if it's a different option
             onChange(name, optionValue); // Pass both name and selected value to the parent
         }
-        setIsOpen(false); // Close the dropdown after selection
     };
 
     const selectedOption = options.find(option => option.value === selectedValue);
 
     return (
         <div className="dropdown-container">
+            {/* Remove click toggle or make it conditional */}
             <div className="menu-header" onClick={() => setIsOpen(!isOpen)}>
                 <div>{title}</div> {/* Menu Header */}
                 <div className="selected-value">
@@ -37,7 +37,7 @@ function Dropdown({ title, options, selectedValue, onChange, name }) {
                             onClick={() => handleOptionSelect(option.value, option.disabled)} // Select an option when clicked
                             style={{
                                 cursor: option.disabled ? 'not-allowed' : 'pointer',
-                                backgroundColor: selectedValue === option.value ? '#fff' : '#f0f0f0',  // Default background for unselected
+                                backgroundColor: selectedValue === option.value ? '#BECDB1' : '#f0f0f0', // Default background for unselected
                             }}
                         >
                             <div className={option.disabled ? 'disabled' : ''}>

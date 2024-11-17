@@ -55,3 +55,9 @@
 .dropdown-item input {
     cursor: pointer;
 }
+
+.selected-value {
+    background-color: #BECDB1;
+    border-radius: 15px;
+    padding: 5px 15px;
+}
