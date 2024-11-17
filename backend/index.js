@@ -14,30 +14,6 @@ app.use(cors());
 
 let currentToken = '';
 
-// // Gets/refreshes the token
-// const getToken = async (req, res, next) => {
-//     const expiration = new Date(currentToken.expires);
-//     const now = new Date();
-
-//     // Check if the token is still valid
-//     if (currentToken && expiration > now) {
-        
-//         res.locals.token = currentToken.token;
-//         next();
-//     } else {
-//         try {
-//             const response = await fetch('http://localhost:5000/token'); // change localhost later
-//             const data = await response.json();
-
-//             res.locals.token = data.token;
-//             next();
-//             // return data.token;
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-// }
-
 // Gets the token
 const getToken = async () => {
     let token;
@@ -49,14 +25,14 @@ const getToken = async () => {
     if (currentToken && expiration > now) {
         
         token = currentToken.token;
-        console.log("New token: ", token);
+        // console.log("New token: ", token);
     } else {
         try {
             const response = await fetch('http://54.185.251.100:5000/token'); // change localhost later
             const data = await response.json();
 
             token = data.token;
-            console.log("New token: ", token);
+            // console.log("New token: ", token);
         } catch (error) {
             console.error(error);
         }
@@ -81,63 +57,6 @@ app.get('/token', async (req, res) => {
     });
 });
 
-// // Example URL: localhost:3000/cameras?token=TOKEN&corner1=LAT|LONG&corner2=LAT|LONG
-// app.get('/cameras', getToken, async (req, res) => {
-//     const token = res.locals.token;
-//     const corner1 = req.query.corner1;
-//     const corner2 = req.query.corner2;
-
-//     if (!token || !corner1 || !corner2) {
-//         res.json({ error: "Token or geobox corners not found. Please provide." });
-//     }
-//     const cameras = getCamerasInABox(token, corner1, corner2);
-//     res.json({ cameras });
-// });
-
-// // Example URL: localhost:3000/camera-image?camera_id=CAMERA_ID&token=TOKEN
-// app.get('/camera-image', getToken, async (req, res) => {
-//     const token = res.locals.token;
-//     const cameraId = req.query.camera_id;
-
-//     if (!token || !cameraId) {
-//         res.json({ error: "Camera ID or token not found. Please provide." });
-//         return;
-//     }
-
-//     const image = await getCameraImage(token, cameraId);
-
-
-//     // res.setHeader('Content-Type', 'image/jpeg');
-//     // res.send(image);
-
-//     // send request to 127.0.0.1:3000/bedrock-req img = image
-//     const response = await fetch("http://localhost:3000/bedrock-req", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'image/jpeg'
-//         },
-//         body: image
-//     });
-
-//     const data = await response.text();
-//     console.log(data);
-//     res.json(data);
-// });
-
-// // Example URL: localhost:3000/cameras-radius?token=TOKEN&center=LAT|LONG&radius=RAD
-// app.get('/cameras-radius', getToken, async (req, res) => {
-//     const token = res.locals.token;
-//     const center = req.query.center;
-//     const radius = req.query.radius;
-
-//     if (!token || !center || !radius) {
-//         res.json({ error: "Token or geobox params not found. Please provide." });
-//     }
-
-//     const cameras = getCamerasInRadius(token, center, radius);
-
-//     res.json({ cameras });
-// });
 
 // Finalized endpoint for the frontend
 app.get('/camera-request', async(req, res) => {
@@ -150,7 +69,7 @@ app.get('/camera-request', async(req, res) => {
     // force-stop requests that aren't the current request to serve
     // live-updated as requests come in
     if (thisReq != reqToServe){
-        console.log("STOPPING REQUEST " + thisReq);
+        // console.log("STOPPING REQUEST " + thisReq);
         allData = ["STOP"];
         res.json(allData);
         return;
@@ -168,7 +87,7 @@ app.get('/camera-request', async(req, res) => {
         res.json({ error: "Token or geobox corners not found. Please provide." });
     }
     const cameras = await getCamerasInABox(token, corner1, corner2);
-    console.log(cameras);
+    // console.log(cameras);
 
     // GetCameraImage portion    
     if (cameras == null) {
@@ -180,7 +99,7 @@ app.get('/camera-request', async(req, res) => {
         // force-stop requests that aren't the current request to serve
         // live-updated as requests come in
         if (thisReq != reqToServe){
-            console.log("STOPPING REQUEST " + thisReq);
+            // console.log("STOPPING REQUEST " + thisReq);
             allData = ["STOP"];
             res.json(allData);
             return;
@@ -208,7 +127,7 @@ app.get('/camera-request', async(req, res) => {
                 body: image
             });
 
-            console.log(response);
+            // console.log(response);
             data = await response.json();
             console.log(typeof data, data);
 
@@ -218,7 +137,7 @@ app.get('/camera-request', async(req, res) => {
         }
 
         if (data.is_there_trash === true) {
-            console.log("Adding an entry with trash!")
+            // console.log("Adding an entry with trash!")
             const image64 = `data:image/jpeg;base64,${image.toString('base64')}`;
 
             allData.push({
@@ -233,7 +152,7 @@ app.get('/camera-request', async(req, res) => {
             });    
         }
     }
-    console.log("Camera processing complete");
+    // console.log("Camera processing complete");
     res.json(allData);
 });
 

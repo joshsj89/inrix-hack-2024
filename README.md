@@ -1,4 +1,4 @@
-# Project README
+# Littercator
 
 ## What it does
 Utilizing INRIX’s extensive traffic data and its Camera APIs, our project analyzes multiple camera feeds from a set coordinate square specified by the user and gathers images. Images are passed through the Llama AWS service to determine if trash is present and identify the trash type and amount.
