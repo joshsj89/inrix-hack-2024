@@ -5,7 +5,10 @@ import logo from '../logo.svg';
 function Navbar() {
     return (
         <nav>
-            <img src={logo} alt="Logo" className="logo" />
+            <div className='logoAndTitle'>
+                <img src={logo} alt="Logo" className="logo" />
+                <div className="title">App Name</div>
+            </div>
 
             <ul>
                 <li>
