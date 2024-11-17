@@ -12,10 +12,11 @@ def hello_world():
     return "Hello, World!"
 
 
-# Example URL: localhost:3000/token
+# Example URL: localhost:3000/bedrock-req
 @app.route("/bedrock-req")
 def bedrock_req():
-    return invoke_bedrock("dummy")
+    return "I got your request"
+    # return invoke_bedrock("dummy")
 
 
 if __name__ == "__main__":
