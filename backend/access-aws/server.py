@@ -1,0 +1,22 @@
+from flask import Flask, request, jsonify
+# from Token import get_token
+# from CamerasBox import get_cameras_in_a_box, get_cameras_in_radius
+# from CameraImage import get_camera_image
+from bedrock import invoke_bedrock
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def hello_world():
+    return "Hello, World!"
+
+
+# Example URL: localhost:3000/token
+@app.route("/bedrock-req")
+def bedrock_req():
+    return invoke_bedrock("dummy")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=3000, debug=True)

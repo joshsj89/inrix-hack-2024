@@ -1,0 +1,8 @@
+venv
+INRIX-Access
+# Uncomment the next line
+.env
+__pycache__
+
+# ethan's test file, the 3 signs one 
+TRASH.jpeg 
