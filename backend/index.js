@@ -129,7 +129,7 @@ app.get('/camera-request', async(req, res) => {
 
             // console.log(response);
             data = await response.json();
-            console.log(typeof data, data);
+            // console.log(typeof data, data);
 
         } catch (error) {
             console.log(error);
