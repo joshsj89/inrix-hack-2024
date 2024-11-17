@@ -31,8 +31,7 @@ model_id = "us.meta.llama3-2-90b-instruct-v1:0"
 # The message you want to send to the model
 def invoke_bedrock(request):
 
-    with open('TRASH.jpeg', 'rb') as image_file:
-        encoded_image = image_file.read()
+    imgBytes = request.data
 
 # what_I_see: string paragraph, 
 # You will receive an image. Return a single JSON object with this format: {string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else.
