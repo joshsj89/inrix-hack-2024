@@ -220,7 +220,7 @@ const PoiMarkers = ({ pois, onMarkerClick, selectedMarker }) => {
               background={"#FFDB58"}
               glyphColor={"white"}
               borderColor={"#FFDB58"}
-              scale={poi === selectedMarker ? 1.5 : 1}
+              scale={poi === selectedMarker ? 2 : 1.5}
             />
           ) : 3 >= poi.trash.number_of_trash_found &&
             poi.trash.number_of_trash_found > 1 ? (
@@ -228,14 +228,14 @@ const PoiMarkers = ({ pois, onMarkerClick, selectedMarker }) => {
               background={"orange"}
               glyphColor={"white"}
               borderColor={"orange"}
-              scale={poi === selectedMarker ? 1.5 : 1}
+              scale={poi === selectedMarker ? 2 : 1.5}
             />
           ) : (
             <Pin
               background={"red"}
               glyphColor={"white"}
               borderColor={"red"}
-              scale={poi === selectedMarker ? 1.5 : 1}
+              scale={poi === selectedMarker ? 2 : 1.5}
             />
           )}
         </AdvancedMarker>
