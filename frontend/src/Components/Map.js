@@ -109,7 +109,7 @@ function TrashMap() {
       ev.detail.bounds.south +
       "|" +
       ev.detail.bounds.west;
-    const response = await fetch("http://localhost:5000" + coordsURL);
+    const response = await fetch("http://54.185.251.100:5000" + coordsURL);
     const data = await response.json();
     console.log("testing list first entry for flag? ", data[0]);
     if (data[0] != 'STOP'){
@@ -181,8 +181,8 @@ function TrashMap() {
             </div>
             <div className="trashEntryContainer">
               {Object.entries(selectedMarker.trash.trash_mappings).map(
-                ([type, count]) => (
-                  <div className="trashEntry">
+                ([type, count], index) => (
+                  <div className="trashEntry" key={index}>
                     <DeleteIcon
                       style={{ fontSize: "medium", color: "#757474" }}
                     />

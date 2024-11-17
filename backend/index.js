@@ -7,7 +7,7 @@ const { getCamerasInABox, getCamerasInRadius } = require('./js/camerasBox');
 const app = express();
 const port = 5000;
 
-reqToServe = 0 
+let reqToServe = 0 
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -49,12 +49,14 @@ const getToken = async () => {
     if (currentToken && expiration > now) {
         
         token = currentToken.token;
+        console.log("New token: ", token);
     } else {
         try {
-            const response = await fetch('http://localhost:5000/token'); // change localhost later
+            const response = await fetch('http://54.185.251.100:5000/token'); // change localhost later
             const data = await response.json();
 
             token = data.token;
+            console.log("New token: ", token);
         } catch (error) {
             console.error(error);
         }
@@ -198,7 +200,7 @@ app.get('/camera-request', async(req, res) => {
             image = await getCameraImage(token, cameraId);
 
             // send request to 127.0.0.1:3000/bedrock-req img = image
-            response = await fetch("http://localhost:3000/bedrock-req", {
+            response = await fetch("http://54.185.251.100:5001/bedrock-req", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'image/jpeg'

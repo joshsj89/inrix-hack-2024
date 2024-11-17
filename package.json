@@ -4,7 +4,7 @@
   "scripts": {
     "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend",
     "start-all": "concurrently --names \"frontend,backend\" \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
-    "start-all-dev": "concurrently --names \"frontend,backend\" \"npm run start --prefix frontend\" \"npm run devStart --prefix backend\""
+    "start-all-dev": "concurrently --names \"frontend,backend,aws\" \"npm run start --prefix frontend\" \"npm run devStart --prefix backend\" \"npm run startAws --prefix backend\""
   },
   "repository": {
     "type": "git",
