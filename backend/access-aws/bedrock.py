@@ -41,13 +41,20 @@ def invoke_bedrock(request):
     with open('TRASH.jpeg', 'rb') as image_file:
         encoded_image = image_file.read()
 
+# what_I_see: string paragraph, 
+# You will receive an image. Return a single JSON object with this format: {string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else.
     conversation = [
     {
+        # "role": "system",
+        # "content": [{
+        #     "text": "You are an image-analyzing AI who will describe images given to you. Your primary goal is to report any trash found in the image. Search the image thoroughly and report even the smallest pieces of trash. When responding to images, return a single JSON format with this format: {'what_I_see': string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}}. Limit your 'what_I_see' entry to one sentence. If the image is blurry or unintelligible, return the string 'UNKNOWN' and do not say anything else under any circumstances."
+        # },],
+
         "role": "user",
         "content": [
             {
-                "text": "You will receive an image. Return a single JSON object with this format: {what_I_see: string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else."
-            },
+                 "text": "You are an image-analyzing AI who will describe images given to you. Your primary goal is to report any trash found in the image. Search the image thoroughly and report even the smallest pieces of trash. When responding to images, return a single JSON format with this format: {'what_I_see': string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}}. Limit your 'what_I_see' entry to one sentence of under 20 words. If the image is blurry or unintelligible, return the string UNKNOWN. Do not say anything else!"
+             },
             {
                 "image": {"format": "jpeg", "source": {"bytes": imgBytes}}},
         ]
@@ -91,7 +98,7 @@ def invoke_bedrock(request):
         response = client.converse(
             modelId=model_id,
             messages=conversation,
-            inferenceConfig={"maxTokens": 512, "temperature": 0.5, "topP": 0.9},
+            inferenceConfig={"maxTokens": 256, "temperature": 0, "topP": 0.8},
         )
 
         response_text = response["output"]["message"]["content"][0]["text"]
