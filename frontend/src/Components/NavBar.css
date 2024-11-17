@@ -50,3 +50,17 @@ nav a.active {
     background-color: #575757;
     border-radius: 5px;
 }
+
+/* Logo and title container */
+.logoAndTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Space between logo and title */
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
