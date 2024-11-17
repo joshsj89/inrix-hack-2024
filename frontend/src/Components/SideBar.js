@@ -38,7 +38,7 @@ function SideBar() {
             <div style={{display: 'flex', flexDirection: 'column', gap: 17, marginBottom: 20}}>
                 <span style={{fontSize: 20, marginVertical: 20}}>Marker Key</span>
                 <div className="statusKey">
-                    <div style={{backgroundColor: 'yellow'}} className="statusColor"></div>
+                    <div style={{ backgroundColor: '#FFDB58' }} className="statusColor"></div>
                     <span>1 piece of trash</span>
                 </div>
                 <div className="statusKey">
