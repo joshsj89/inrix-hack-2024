@@ -104,7 +104,6 @@ function TrashMap() {
         mapId="SeattleExampleMap"
         fullscreenControl={false}
         streetViewControl={false}
-        style={{ borderRadius: "20px" }}
       >
         <PoiMarkers
           pois={cameraLocations}

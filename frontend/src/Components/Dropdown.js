@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Dropdown.css";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 function Dropdown({ title, options, selectedValue, onChange, name }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +12,10 @@ function Dropdown({ title, options, selectedValue, onChange, name }) {
     };
 
     return (
-        <div className="menu">
+        <div>
             <div className="menu-header" onClick={() => setIsOpen(!isOpen)}>
                 <div>{title}</div> {/* Menu Header */}
-                <div className="arrow">{isOpen ? "▲" : "▼"}</div> {/* Arrow */}
+                <div className="arrow">{isOpen ? <ExpandLessIcon style={{fontSize: 'medium'}}/> : <ExpandMoreIcon style={{fontSize: 'medium'}}/>}</div> {/* Arrow */}
             </div>
             {isOpen && (
                 <div className="dropdown">
