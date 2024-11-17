@@ -2,11 +2,13 @@
 
 /* Navbar container */
 nav {
+    width: 95%;
     padding: 20px 20px;
     display: flex;
     align-items: center;
+    /* Vertically center items in the navbar */
     justify-content: space-between;
-    /* Space between logo and links */
+    /* Align the content to the left */
 }
 
 /* Logo styling */
@@ -28,7 +30,7 @@ nav ul {
 
 /* Navbar list items */
 nav li {
-    margin: 0 15px;
+    margin: 0 2px;
 }
 
 /* Navbar links */
@@ -36,21 +38,20 @@ nav a {
     color: black;
     text-decoration: none;
     font-size: 18px;
-    padding: 8px 15px;
+    padding: 8px 30px;
     transition: background-color 0.3s ease;
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 nav a:hover {
-    background-color: #E1EFEF;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
+    background-color: #F9FAFB;
+    border-radius: 10px;
 }
 
 nav a.active {
-    background-color: #E1EFEF;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 /* Logo and title container */
@@ -65,4 +66,11 @@ nav a.active {
     font-size: 24px;
     font-weight: bold;
     color: black;
+}
+
+.links {
+    display: flex;
+    background-color: #F9FAFB;
+    padding: 15px 5px 15px 5px;
+    border-radius: 10px;
 }
