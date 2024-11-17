@@ -84,6 +84,7 @@ const cameraLocations = [
 function TrashMap() {
   const seattleCenter = { lat: 47.62092, lng: -122.350042 };
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [response, setResponse] = useState('');
   const mapRef = useRef(null); // Reference to the map instance
 
   const handleCloseModal = () => {
@@ -94,9 +95,13 @@ function TrashMap() {
     setSelectedMarker(marker);
   };
 
-  const handleCameraChange = useCallback((ev) => {
-    //HI BACKEND! ev.detail.bounds will have the object with the NESW bounds!
-    console.log('camera changed: ', ev.detail.bounds);
+
+  const handleCameraChange = useCallback((ev) => {    
+    const coordsURL = "/camera-request?corner1=" + ev.detail.bounds.north + "|" + ev.detail.bounds.east + "&corner2=" + ev.detail.bounds.south + "|" + ev.detail.bounds.west;
+    const response = fetch('http://localhost:5000'+ coordsURL); 
+    
+    setResponse(response);
+    console.log(response);
   });
 
   return (
