@@ -2,7 +2,9 @@
   "name": "inrix-hack-2024",
   "version": "1.0.0",
   "scripts": {
-    "install-all": "npm install && npm install --prefix frontend"
+    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "start-all": "concurrently --names \"frontend,backend\" \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
+    "start-all-dev": "concurrently --names \"frontend,backend\" \"npm run start --prefix frontend\" \"npm run devStart --prefix backend\""
   },
   "repository": {
     "type": "git",
@@ -14,5 +16,8 @@
     "url": "https://github.com/joshsj89/inrix-hack-2024/issues"
   },
   "homepage": "https://github.com/joshsj89/inrix-hack-2024#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
 }
