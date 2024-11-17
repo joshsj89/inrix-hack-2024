@@ -10,14 +10,16 @@ function Navbar() {
                 <div className="title">App Name</div>
             </div>
 
-            <ul>
-                <li>
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>About</NavLink>
-                </li>
-            </ul>
+            <div className="links">
+                <ul>
+                    <li>
+                        <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>About</NavLink>
+                    </li>
+                </ul>
+            </div>
         </nav>
     );
 }
