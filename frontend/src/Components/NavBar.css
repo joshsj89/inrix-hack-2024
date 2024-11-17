@@ -5,8 +5,8 @@ nav {
     width: 95%;
     padding: 20px 20px;
     display: flex;
-    align-items: center; /* Vertically center items in the navbar */
-    justify-content: space-between; /* Align the content to the left */
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Logo styling */
@@ -50,15 +50,14 @@ nav a.active {
     border-radius: 10px;
 }
 
-/* Logo and title container */
 .logoAndTitle {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
-    /* Space between logo and title */
 }
 
-.title {
+.appName {
     font-size: 24px;
     font-weight: bold;
     color: black;
@@ -69,4 +68,10 @@ nav a.active {
     background-color: #F9FAFB;
     padding: 15px 5px 15px 5px;
     border-radius: 10px;
+}
+
+.selected-value {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
 }
