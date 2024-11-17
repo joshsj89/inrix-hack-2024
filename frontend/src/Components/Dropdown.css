@@ -1,13 +1,16 @@
 .menu-header {
     align-items: center;
-    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .menu-header:hover {
-    background-color: aqua;
+    background-color: grey;
+    cursor: pointer;
 }
 
-/*
+
 .dropdown {
     margin-top: 10px;
     display: flex;
@@ -30,4 +33,3 @@
     margin-right: 5px;
 }
 
-*/
