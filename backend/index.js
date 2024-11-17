@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = use("cors");
+const cors = require("cors");
 const getCameraImage = require('./js/camerasImage');
 const { getCamerasInABox, getCamerasInRadius } = require('./js/camerasBox');
 
@@ -155,6 +155,12 @@ app.get('/camera-request', async(req, res) => {
 
     // GetCameraImage portion    
     const allData = [];
+
+    if (cameras == null) {
+        res.json(allData);
+        return;
+    }
+
     for (const camera of cameras) {
         const cameraId = camera.id;
     
@@ -193,8 +199,8 @@ app.get('/camera-request', async(req, res) => {
                 key: camera.key,
                 name: camera.name,
                 location: {
-                    latitude: camera.latitude,
-                    longitude: camera.longitude
+                    lat: parseFloat(camera.latitude),
+                    lng: parseFloat(camera.longitude)
                 },
                 trash: data,
             });    

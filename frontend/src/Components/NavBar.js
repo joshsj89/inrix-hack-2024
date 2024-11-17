@@ -11,14 +11,14 @@ function Navbar() {
             </div>
 
             <div className="links">
-                <ul>
+                {/* <ul>
                     <li>
                         <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink>
                     </li>
                     <li>
                         <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>About</NavLink>
                     </li>
-                </ul>
+                </ul> */}
             </div>
         </nav>
     );
