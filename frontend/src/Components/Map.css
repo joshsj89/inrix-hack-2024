@@ -22,3 +22,30 @@
   border: none;
   outline: none;
 }
+
+.babyTitleArea{
+  background-color: #E1EFEF;
+  font-size: 24px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  border-radius: 13px;
+}
+
+.trashDescription{
+  background-color: #F8F7F1;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 13px;
+}
+
+.trashEntry{
+  background-color: #F8F7F1;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 13px;
+  margin-bottom: 10px;
+}
+
