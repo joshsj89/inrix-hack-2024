@@ -1,8 +1,9 @@
 import { React, useState, useRef, useCallback } from "react";
 import "./Map.css";
 import CloseIcon from "@mui/icons-material/Close";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import DeleteIcon from '@mui/icons-material/Delete';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { OrbitProgress } from "react-loading-indicators";
 
 import {
   APIProvider,
@@ -96,18 +97,23 @@ function TrashMap() {
     setSelectedMarker(marker);
   };
 
-
-  const handleCameraChange = useCallback(async (ev) => {    
+  const handleCameraChange = useCallback(async (ev) => {
     console.log("here");
     setLoading(true);
-    const coordsURL = "/camera-request?corner1=" + ev.detail.bounds.north + "|" + ev.detail.bounds.east + "&corner2=" + ev.detail.bounds.south + "|" + ev.detail.bounds.west;
-    const response = await fetch('http://localhost:5000'+ coordsURL); 
+    const coordsURL =
+      "/camera-request?corner1=" +
+      ev.detail.bounds.north +
+      "|" +
+      ev.detail.bounds.east +
+      "&corner2=" +
+      ev.detail.bounds.south +
+      "|" +
+      ev.detail.bounds.west;
+    const response = await fetch("http://localhost:5000" + coordsURL);
     const data = await response.json();
     setResponse(data);
     setLoading(false);
   });
-
-
 
   return (
     <APIProvider
@@ -131,7 +137,9 @@ function TrashMap() {
           <div className="cameraModal">
             <div className="topOfCameraModal">
               <div className="babyTitleArea">
-                <LocationOnIcon style={{ fontSize: "x-large", color: "#000" }} />
+                <LocationOnIcon
+                  style={{ fontSize: "x-large", color: "#000" }}
+                />
                 <span>{selectedMarker.name[0]}</span>
               </div>
               <button className="closeButton" onClick={handleCloseModal}>
@@ -142,8 +150,10 @@ function TrashMap() {
               {selectedMarker.trash.what_I_see}
             </p>
             <div>
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <p style={{ color: '#757474', marginBottom: '10px' }}>Trash Mappings:</p>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <p style={{ color: "#757474", marginBottom: "10px" }}>
+                  Trash Mappings:
+                </p>
                 <span
                   className="trashCount"
                   style={{
@@ -152,20 +162,21 @@ function TrashMap() {
                         ? "#FFDB58"
                         : selectedMarker.trash.number_of_trash_found > 1 &&
                           selectedMarker.trash.number_of_trash_found <= 3
-                          ? "orange"
-                          : "red",
+                        ? "orange"
+                        : "red",
                   }}
                 >
                   {selectedMarker.trash.number_of_trash_found}
                 </span>
-
               </div>
             </div>
             <div className="trashEntryContainer">
               {Object.entries(selectedMarker.trash.trash_mappings).map(
                 ([type, count]) => (
                   <div className="trashEntry">
-                    <DeleteIcon style={{ fontSize: "medium", color: "#757474" }} />
+                    <DeleteIcon
+                      style={{ fontSize: "medium", color: "#757474" }}
+                    />
                     <span>
                       {type} - {count}
                     </span>
@@ -175,9 +186,11 @@ function TrashMap() {
             </div>
           </div>
         )}
-        <div>
-          {loading ? <p>loading</p> : <p>not loading</p>}
-        </div>
+        {loading && (
+          <div className="loadingIndicator">
+            <OrbitProgress color={"black"} size="medium"/>
+          </div>
+        )}
       </Map>
     </APIProvider>
   );
