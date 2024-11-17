@@ -6,10 +6,11 @@ def get_camera_info(xml):
     cameras = []
     for camera in xml.findall(".//Camera"):
         camera_id = camera.get("id")
+        name = camera.find("Name").text
         point = camera.find("Point")
         latitude = point.get("latitude")
         longitude = point.get("longitude")
-        cameras.append({"id": camera_id, "latitude": latitude, "longitude": longitude})
+        cameras.append({"id": camera_id, "name": name, "latitude": latitude, "longitude": longitude})
     return cameras
 
 
