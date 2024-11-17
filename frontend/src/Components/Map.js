@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useRef, useCallback } from "react";
 import "./Map.css";
 import CloseIcon from "@mui/icons-material/Close";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -31,7 +31,7 @@ const cameraLocations = [
     trash: {
       what_I_see: "There's some stuff.",
       is_there_trash: true,
-      number_of_trash_found: 12,
+      number_of_trash_found: 10,
       trash_mappings: {
         signs: 3,
         "beer cans": 4,
@@ -45,7 +45,7 @@ const cameraLocations = [
     trash: {
       what_I_see: "Some more stuf.",
       is_there_trash: true,
-      number_of_trash_found: 5,
+      number_of_trash_found: 1,
       trash_mappings: {
         "car tire": 3,
         "trash bag": 2,
@@ -83,8 +83,8 @@ const cameraLocations = [
 
 function TrashMap() {
   const seattleCenter = { lat: 47.62092, lng: -122.350042 };
-
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const mapRef = useRef(null); // Reference to the map instance
 
   const handleCloseModal = () => {
     setSelectedMarker(null);
@@ -93,6 +93,11 @@ function TrashMap() {
   const handleMarkerClick = (marker) => {
     setSelectedMarker(marker);
   };
+
+  const handleCameraChange = useCallback((ev) => {
+    //HI BACKEND! ev.detail.bounds will have the object with the NESW bounds!
+    console.log('camera changed: ', ev.detail.bounds);
+  });
 
   return (
     <APIProvider
@@ -105,6 +110,7 @@ function TrashMap() {
         mapId="SeattleExampleMap"
         fullscreenControl={false}
         streetViewControl={false}
+        onCameraChanged={handleCameraChange}
       >
         <PoiMarkers
           pois={cameraLocations}
@@ -155,17 +161,24 @@ const PoiMarkers = ({ pois, onMarkerClick, selectedMarker }) => {
           clickable={true}
           onClick={() => onMarkerClick(poi)}
         >
-          {selectedMarker === poi ? (
+          {poi.trash.number_of_trash_found <= 1 ? (
             <Pin
-              background={"#22784F"}
+              background={"yellow"}
               glyphColor={"white"}
-              borderColor={"black"}
+              borderColor={"yellow"}
+            />
+          ) : 3 >= poi.trash.number_of_trash_found &&
+            poi.trash.number_of_trash_found > 1 ? (
+            <Pin
+              background={"orange"}
+              glyphColor={"white"}
+              borderColor={"orange"}
             />
           ) : (
             <Pin
-              background={"#C1CFB8"}
+              background={"red"}
               glyphColor={"white"}
-              borderColor={"black"}
+              borderColor={"red"}
             />
           )}
         </AdvancedMarker>
