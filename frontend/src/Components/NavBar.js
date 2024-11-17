@@ -1,7 +1,7 @@
 // src/components/Navbar.js
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';  // Make sure to import your CSS file for styling
-import logo from '../logo.svg';
+import logo from '../logo.png';
 function Navbar() {
     return (
         <nav>
