@@ -7,7 +7,7 @@ function Navbar() {
         <nav>
             <div className='logoAndTitle' onClick={() => window.location.href = "/"}>
                 <img src={logo} alt="Logo" className="logo" />
-                <div className="appName">App Name</div>
+                <div className="appName">Littercator</div>
             </div>
 
             <div className="links">
