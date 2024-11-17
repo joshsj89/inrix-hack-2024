@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import "./Map.css";
 import CloseIcon from "@mui/icons-material/Close";
-import MapIcon from "../Images/LocationIcon.png";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   APIProvider,
@@ -114,8 +115,8 @@ function TrashMap() {
           <div className="cameraModal">
             <div className="topOfCameraModal">
               <div className="babyTitleArea">
+                <LocationOnIcon style={{ fontSize: "x-large", color: "#000" }} />
                 <span>Area Name</span>
-                <img src={MapIcon}></img>
               </div>
               <button className="closeButton" onClick={handleCloseModal}>
                 <CloseIcon style={{ fontSize: "large", color: "#000" }} />
@@ -124,16 +125,19 @@ function TrashMap() {
             <p className="trashDescription">
               {selectedMarker.trash.what_I_see}
             </p>
-            <p style={{color: '#757474'}}>Trash Mappings:</p>
-            {Object.entries(selectedMarker.trash.trash_mappings).map(
-              ([type, count]) => (
-                <div className="trashEntry">
-                  <span>
-                    {type} - {count}
-                  </span>
-                </div>
-              )
-            )}
+            <p style={{ color: '#757474', marginBottom: '10px' }}>Trash Mappings:</p>
+            <div className="trashEntryContainer">
+              {Object.entries(selectedMarker.trash.trash_mappings).map(
+                ([type, count]) => (
+                  <div className="trashEntry">
+                    <DeleteIcon style={{ fontSize: "medium", color: "#757474" }} />
+                    <span>
+                      {type} - {count}
+                    </span>
+                  </div>
+                )
+              )}
+            </div>
           </div>
         )}
       </Map>

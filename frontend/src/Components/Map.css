@@ -6,7 +6,8 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  width: 25%;
+  width: 350px;
+  max-width: 45%;
   border-radius: 12px;
 }
 
@@ -24,29 +25,44 @@
 }
 
 .babyTitleArea{
-  background-color: #E1EFEF;
+  background-color: #BECDB1;
   font-size: 24px;
-  padding: 8px 12px;
+  padding: 7.5px 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 15px;
-  border-radius: 13px;
+  gap: 5px;
+  border-radius: 24px;
 }
 
 .trashDescription{
-  background-color: #F8F7F1;
+  background-color: #E1EFEF;
   padding: 10px 14px;
   font-size: 16px;
   border-radius: 13px;
-}
-
-.trashEntry{
-  background-color: #F8F7F1;
-  padding: 10px 14px;
-  font-size: 16px;
-  border-radius: 13px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
+.trashEntryContainer {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+}
 
+.trashEntry {
+  background-color: #F8F7F1;
+  padding: 10px 14px;
+  font-size: 16px;
+  height: 17.5px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.trashEntry svg {
+  margin-right: 8px;
+}
