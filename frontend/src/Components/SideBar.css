@@ -1,56 +1,9 @@
 /* General sidebar styling */
 .sidebar {
     width: 250px;
-    background-color: #f4f4f4;
-    padding: 10px;
+    background-color: #F5F5F4;
+    padding: 10px 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Menu item styling */
-.menu-item {
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for menu items */
-.menu-item:hover {
-    background-color: #575757;
-}
-
-/* Dropdown menu container */
-.dropdown {
-    padding-left: 20px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-
-/* Dropdown item styling */
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: #e0e0e0;
-    color: black;
-    margin-bottom: 5px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for dropdown items */
-.dropdown-item:hover {
-    background-color: #d6d6d6;
-}
-
-/* Checkbox alignment */
-.dropdown-item input {
-    cursor: pointer;
+    margin: auto 10px;
+    border-radius: 13px;
 }

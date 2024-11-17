@@ -1,3 +1,8 @@
+.menu{
+    margin: 10px;
+
+}
+
 .menu-header {
     align-items: center;
     display: flex;
@@ -6,30 +11,48 @@
 }
 
 .menu-header:hover {
-    background-color: grey;
     cursor: pointer;
 }
 
 
-.dropdown {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+.menu-item {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
+/* Dropdown menu container */
+.dropdown {
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Dropdown item styling */
 .dropdown-item {
     display: flex;
     align-items: center;
-    margin-right: 20px;
-    
+    gap: 10px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    color: black;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+    background-color: #d6d6d6;
+}
+
+/* Checkbox alignment */
 .dropdown-item input {
-    margin-right: 5px;
+    cursor: pointer;
 }
-
