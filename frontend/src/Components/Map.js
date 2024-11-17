@@ -193,7 +193,7 @@ function TrashMap() {
                 )
               )}
             </div>
-            <img src={selectedMarker.camPicture} alt="Rendered Image" class="camImg"/>
+            <img src={selectedMarker.camPicture} alt="Rendered Image" className="camImg"/>
           </div>
         )}
         {loading && (

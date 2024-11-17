@@ -70,7 +70,7 @@ function SideBar() {
                 setIsOpen={setDropdown2Open}
                 disabled={!dropdown2Open} // Disable the dropdown when not open
             /> */}
-            <p class="disclaimer"> Trash analysis is performed by AI, which can make mistakes.</p>
+            <p className="disclaimer"> Trash analysis is performed by AI, which can make mistakes.</p>
         </div>
     );
 }
