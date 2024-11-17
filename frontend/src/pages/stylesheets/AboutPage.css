@@ -1,0 +1,27 @@
+.left-text {
+    width: 50%;
+    margin-bottom: 20px;
+    text-align: left;
+    /* Aligns text to the left */
+    margin-left: 0;
+    /* Ensures it starts from the left */
+}
+
+.right-text {
+    width: 50%;
+    margin-bottom: 20px;
+    text-align: right;
+    /* Aligns text to the right */
+    margin-left: auto;
+    /* Pushes it to the right */
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+div {
+    display: block;
+    /* Ensures block layout for separation */
+}

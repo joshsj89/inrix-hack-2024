@@ -53,20 +53,23 @@ function SideBar() {
             {/* Dropdown for Cities */}
             <Dropdown
                 title="City"
-                name="dropdown1"
                 options={cities}
                 selectedValue={selectedItems.dropdown1}
                 onChange={handleSelectionChange}
+                name="dropdown1"
             />
 
-            {/* Dropdown for other menu options */}
-            <Dropdown
+            {/* Uncomment and modify the second dropdown as necessary */}
+            {/* <Dropdown
                 title="Menu"
                 name="dropdown2"
                 options={menuOptions}
                 selectedValue={selectedItems.dropdown2}
                 onChange={handleSelectionChange}
-            />
+                isOpen={dropdown2Open}
+                setIsOpen={setDropdown2Open}
+                disabled={!dropdown2Open} // Disable the dropdown when not open
+            /> */}
         </div>
     );
 }
