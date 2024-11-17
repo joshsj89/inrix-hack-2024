@@ -85,3 +85,8 @@
   border-radius: 20px;
   display: inline-block;
 }
+
+.camImg {
+  height: 100%;
+  width: 100%;  
+}

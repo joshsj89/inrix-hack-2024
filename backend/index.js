@@ -192,9 +192,10 @@ app.get('/camera-request', async(req, res) => {
 
         let response;
         let data;
+        let image;
         
         try {
-            const image = await getCameraImage(token, cameraId);
+            image = await getCameraImage(token, cameraId);
 
             // send request to 127.0.0.1:3000/bedrock-req img = image
             response = await fetch("http://localhost:3000/bedrock-req", {
@@ -216,6 +217,8 @@ app.get('/camera-request', async(req, res) => {
 
         if (data.is_there_trash === true) {
             console.log("Adding an entry with trash!")
+            const image64 = `data:image/jpeg;base64,${image.toString('base64')}`;
+
             allData.push({
                 key: camera.key,
                 name: camera.name,
@@ -224,6 +227,7 @@ app.get('/camera-request', async(req, res) => {
                     lng: parseFloat(camera.longitude)
                 },
                 trash: data,
+                camPicture: image64
             });    
         }
     }
