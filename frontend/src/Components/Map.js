@@ -131,7 +131,26 @@ function TrashMap() {
             <p className="trashDescription">
               {selectedMarker.trash.what_I_see}
             </p>
-            <p style={{ color: '#757474', marginBottom: '10px' }}>Trash Mappings:</p>
+            <div>
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <p style={{ color: '#757474', marginBottom: '10px' }}>Trash Mappings:</p>
+                <span
+                  className="trashCount"
+                  style={{
+                    backgroundColor:
+                      selectedMarker.trash.number_of_trash_found <= 1
+                        ? "yellow"
+                        : selectedMarker.trash.number_of_trash_found > 1 &&
+                          selectedMarker.trash.number_of_trash_found <= 3
+                          ? "orange"
+                          : "red",
+                  }}
+                >
+                  {selectedMarker.trash.number_of_trash_found}
+                </span>
+
+              </div>
+            </div>
             <div className="trashEntryContainer">
               {Object.entries(selectedMarker.trash.trash_mappings).map(
                 ([type, count]) => (

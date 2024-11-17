@@ -66,3 +66,10 @@
 .trashEntry svg {
   margin-right: 8px;
 }
+
+.trashCount {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  display: inline-block;
+}

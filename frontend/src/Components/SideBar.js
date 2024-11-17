@@ -35,7 +35,7 @@ function SideBar() {
 
     return (
         <div className="sidebar">
-            <div style={{display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20}}>
+            <div style={{display: 'flex', flexDirection: 'column', gap: 17, marginBottom: 20}}>
                 <span style={{fontSize: 20, marginVertical: 20}}>Marker Key</span>
                 <div className="statusKey">
                     <div style={{backgroundColor: 'yellow'}} className="statusColor"></div>
