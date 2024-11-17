@@ -122,8 +122,8 @@ app.get('/camera-request', getToken, async(req, res) => {
     if (!token || !corner1 || !corner2) {
         res.json({ error: "Token or geobox corners not found. Please provide." });
     }
-    const cameras = getCamerasInABox(token, corner1, corner2);
-    res.json({ cameras });
+    const cameras = await getCamerasInABox(token, corner1, corner2);
+    console.log(cameras);
 
     /*
 {
@@ -147,31 +147,44 @@ app.get('/camera-request', getToken, async(req, res) => {
     // GetCameraImage portion
 
     // TODO: For each in cameras, all the way to the end
-    // apply a "key" as well starting from 1
     // so loop like in c - for (int i = 0; i < len(cameras); i++)
-    const cameraId = req.query.camera_id;
+    
+    const allData = [];
+    for (const camera of cameras) {
+        const cameraId = camera.id;
+    
+        if (!token || !cameraId) {
+            res.json({ error: "Camera ID or token not found. Please provide." });
+            return;
+        }
+    
+        const image = await getCameraImage(token, cameraId);
+    
+        // send request to 127.0.0.1:3000/bedrock-req img = image
+        const response = await fetch("http://localhost:3000/bedrock-req", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'image/jpeg'
+            },
+            body: image
+        });
 
-    if (!token || !cameraId) {
-        res.json({ error: "Camera ID or token not found. Please provide." });
-        return;
+        const data = await response.text();
+        console.log(data);
+
+        allData.push({
+            key: camera.key,
+            name: camera.name,
+            location: {
+                latitude: camera.latitude,
+                longitude: camera.longitude
+            },
+            trash: data,
+        });
     }
 
-    const image = await getCameraImage(token, cameraId);
-
-    // send request to 127.0.0.1:3000/bedrock-req img = image
-    const response = await fetch("http://localhost:3000/bedrock-req", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'image/jpeg'
-        },
-        body: image
-    });
-
-    const data = await response.text();
-    console.log(data);
-    res.json(data);
-
-})
+    res.json(allData);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

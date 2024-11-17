@@ -27,18 +27,22 @@ const getCamerasInABox = async (token, corner1, corner2) => {
     // corner2 = "47.648940|-122.280300"
     const url = `https://na-api.beta.inrix.com/Traffic/Inrix.ashx?action=GetTrafficCamerasInBox&locale=en-US&corner1=${corner1}&corner2=${corner2}&token=${token}`;
 
-    const payload = {};
-    const headers = {};
-
     const options = {
         method: 'GET',
-        headers: headers,
-        body: JSON.stringify(payload)
     };
 
-    const response = await fetch(url, options);
-
-    //
+    try {
+        const response = await fetch(url, options);
+        const responseText = await response.text();
+        const root = await xml2js.parseStringPromise(responseText);
+    
+        const cameraInfo = await getCameraInfo(root);
+    
+        return cameraInfo;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
 const getCamerasInRadius = async (token, center, radius) => {
@@ -66,8 +70,6 @@ const getCamerasInRadius = async (token, center, radius) => {
         console.error(error);
         return null;
     }
-
-    //
 }
 
 module.exports = { getCamerasInABox, getCamerasInRadius };
