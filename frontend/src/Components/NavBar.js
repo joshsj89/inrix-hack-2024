@@ -5,7 +5,7 @@ import logo from '../logo.svg';
 function Navbar() {
     return (
         <nav>
-            <div className='logoAndTitle'>
+            <div className='logoAndTitle' onClick={() => window.location.href = "/"}>
                 <img src={logo} alt="Logo" className="logo" />
                 <div className="title">App Name</div>
             </div>
