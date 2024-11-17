@@ -2,8 +2,7 @@
 
 /* Navbar container */
 nav {
-    background-color: #333;
-    padding: 10px 20px;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,21 +33,22 @@ nav li {
 
 /* Navbar links */
 nav a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 18px;
     padding: 8px 15px;
     transition: background-color 0.3s ease;
+    border-radius: 25px;
 }
 
 nav a:hover {
-    background-color: #575757;
-    border-radius: 5px;
+    background-color: #E1EFEF;
+    border-radius: 25px;
 }
 
 nav a.active {
-    background-color: #575757;
-    border-radius: 5px;
+    background-color: #E1EFEF;
+    border-radius: 25px;
 }
 
 /* Logo and title container */
@@ -62,5 +62,5 @@ nav a.active {
 .title {
     font-size: 24px;
     font-weight: bold;
-    color: white;
+    color: black;
 }
