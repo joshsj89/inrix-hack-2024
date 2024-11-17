@@ -3,17 +3,18 @@ const xml2js = require('xml2js');
 const getCameraInfo = async (xml) => {
     const cameras = [];
 
-    console.log(xml);
-    const cameraList = xml.CameraList.Camera;
+    const cameraList = xml.Inrix.Cameras[0].Camera;
 
     if (cameraList) {
-        cameraList.forEach(camera => {
+        cameraList.forEach((camera, index) => {
+            const key = index + 1;
             const cameraId = camera.$.id;
+            const name = camera.Name;
             const point = camera.Point[0];
             const latitude = point.$.latitude;
             const longitude = point.$.longitude;
 
-            cameras.push({ id: cameraId, latitude, longitude });
+            cameras.push({ id: cameraId, latitude, longitude, name, key });
         })
     }
 
@@ -58,8 +59,6 @@ const getCamerasInRadius = async (token, center, radius) => {
         const root = await xml2js.parseStringPromise(responseText);
 
         const cameraInfo = await getCameraInfo(root);
-
-        console.log(cameraInfo);
 
         return cameraInfo;
 
