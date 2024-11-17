@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = use("cors");
 const getCameraImage = require('./js/camerasImage');
 const { getCamerasInABox, getCamerasInRadius } = require('./js/camerasBox');
 
@@ -7,6 +8,7 @@ const app = express();
 const port = 5000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 let currentToken = '';
 
