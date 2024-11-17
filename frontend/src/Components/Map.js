@@ -139,7 +139,7 @@ function TrashMap() {
                   style={{
                     backgroundColor:
                       selectedMarker.trash.number_of_trash_found <= 1
-                        ? "yellow"
+                        ? "#FFDB58"
                         : selectedMarker.trash.number_of_trash_found > 1 &&
                           selectedMarker.trash.number_of_trash_found <= 3
                           ? "orange"
