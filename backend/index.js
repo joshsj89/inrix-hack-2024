@@ -112,9 +112,6 @@ app.get('/cameras-radius', getToken, async (req, res) => {
 app.get('/camera-request', getToken, async(req, res) => {
     const token = res.locals.token;
 
-    // not sure how data is getting sent yet, could be 4 vars
-    // and we have to pair them
-
     // GetCamerasInBox portion
     const corner1 = req.query.corner1;
     const corner2 = req.query.corner2;
@@ -125,30 +122,7 @@ app.get('/camera-request', getToken, async(req, res) => {
     const cameras = await getCamerasInABox(token, corner1, corner2);
     console.log(cameras);
 
-    /*
-{
-  "cameras": [
-    {
-      "id": "3579",
-      "latitude": "37.764720",
-      "longitude": "-122.405000"
-    },
-    {
-      "id": "4101",
-      "latitude": "37.768330",
-      "longitude": "-122.405500"
-    }
-  ]
-}
-    */
-
-    // hold onto the name, latitude, longitude
-
-    // GetCameraImage portion
-
-    // TODO: For each in cameras, all the way to the end
-    // so loop like in c - for (int i = 0; i < len(cameras); i++)
-    
+    // GetCameraImage portion    
     const allData = [];
     for (const camera of cameras) {
         const cameraId = camera.id;
@@ -157,30 +131,43 @@ app.get('/camera-request', getToken, async(req, res) => {
             res.json({ error: "Camera ID or token not found. Please provide." });
             return;
         }
-    
-        const image = await getCameraImage(token, cameraId);
-    
-        // send request to 127.0.0.1:3000/bedrock-req img = image
-        const response = await fetch("http://localhost:3000/bedrock-req", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'image/jpeg'
-            },
-            body: image
-        });
 
-        const data = await response.text();
-        console.log(data);
+        let response;
+        let data;
+        
+        try {
+            const image = await getCameraImage(token, cameraId);
 
-        allData.push({
-            key: camera.key,
-            name: camera.name,
-            location: {
-                latitude: camera.latitude,
-                longitude: camera.longitude
-            },
-            trash: data,
-        });
+            // send request to 127.0.0.1:3000/bedrock-req img = image
+            response = await fetch("http://localhost:3000/bedrock-req", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'image/jpeg'
+                },
+                body: image
+            });
+
+            console.log(response);
+            data = await response.json();
+            console.log(typeof data, data);
+
+        } catch (error) {
+            console.log(error);
+            data = { error: 'Non-JSON response received', is_there_trash: false };
+        }
+
+        if (data.is_there_trash === true) {
+            console.log("Adding an entry with trash!")
+            allData.push({
+                key: camera.key,
+                name: camera.name,
+                location: {
+                    latitude: camera.latitude,
+                    longitude: camera.longitude
+                },
+                trash: data,
+            });    
+        }
     }
 
     res.json(allData);

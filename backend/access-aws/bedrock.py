@@ -3,7 +3,9 @@ from botocore.exceptions import ClientError
 import os
 from dotenv import load_dotenv
 
+# Credit for structure: 
 # https://medium.com/@codingmatheus/sending-images-to-claude-3-using-amazon-bedrock-b588f104424f
+
 # import os
 # import dotenv
 # import boto3
@@ -29,15 +31,6 @@ model_id = "us.meta.llama3-2-90b-instruct-v1:0"
 # The message you want to send to the model
 def invoke_bedrock(request):
 
-    # conversation = [
-    #     {
-    #         "role": "user",
-    #         "content": [{"text": user_message}],
-    #     }
-    # ]
-
-    imgBytes = request.data
-
     with open('TRASH.jpeg', 'rb') as image_file:
         encoded_image = image_file.read()
 
@@ -53,7 +46,7 @@ def invoke_bedrock(request):
         "role": "user",
         "content": [
             {
-                 "text": "You are an image-analyzing AI who will describe images given to you. Your primary goal is to report any trash found in the image. Search the image thoroughly and report even the smallest pieces of trash. When responding to images, return a single JSON format with this format: {'what_I_see': string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}}. Limit your 'what_I_see' entry to one sentence of under 20 words. If the image is blurry or unintelligible, return the string UNKNOWN. Do not say anything else!"
+                 "text": "You are an image-analyzing AI who will describe images given to you. Your primary goal is to report any trash found in the image. Search the image thoroughly and report even the smallest pieces of trash. When responding to images, return a single JSON format with this format: {what_I_see: string paragraph, is_there_trash: boolean, number_of_trash_found: int, trash_mappings: dictionary {trash_name: count_of_trash}}. Limit your what_I_see entry to one sentence of under 20 words. If the image is blurry or unintelligible, return the string UNKNOWN. Do not say anything else!"
              },
             {
                 "image": {"format": "jpeg", "source": {"bytes": imgBytes}}},
@@ -61,39 +54,6 @@ def invoke_bedrock(request):
     }
     ]
     
-
-    # conversation = [
-    #     {
-    #         "role": "user",
-    #         "content": [{
-    #             "text": "You will receive an image. Return a single JSON object with this format: {what_I_see': string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else."
-    #         }]
-    #     },
-    #     {
-    #         "role": "user",
-    #         "content": [{
-    #             "image": encoded_image
-    #         }]
-    #     }
-    # ]
-
-    # conversation = [
-    #     {
-    #         "role": "user",
-    #         "content": [
-    #             {
-    #                 "type": "text",
-    #                 "data": "You will receive an image. Return a single JSON object with this format: {what_I_see': string paragraph, 'is_there_trash': boolean, 'number_of_trash_found': int, 'trash_mappings': dictionary {trash_name: count_of_trash}} Do not say anything else."
-    #             },
-    #             {
-    #                 "type": "image",
-    #                 "data": encoded_image
-    #             },
-
-    #         ],
-    #     }
-    # ]
-
     try:
         response = client.converse(
             modelId=model_id,
