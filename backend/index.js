@@ -7,6 +7,8 @@ const { getCamerasInABox, getCamerasInRadius } = require('./js/camerasBox');
 const app = express();
 const port = 5000;
 
+reqToServe = 0 
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -137,7 +139,20 @@ app.get('/token', async (req, res) => {
 
 // Finalized endpoint for the frontend
 app.get('/camera-request', async(req, res) => {
+    reqToServe = (reqToServe + 1) % 10000;
+    const thisReq = reqToServe;
     const token = await getToken();
+
+    let allData = [];
+
+    // force-stop requests that aren't the current request to serve
+    // live-updated as requests come in
+    if (thisReq != reqToServe){
+        console.log("STOPPING REQUEST " + thisReq);
+        allData = ["STOP"];
+        res.json(allData);
+        return;
+    }
 
     // GetCamerasInBox portion
     const corner1 = req.query.corner1;
@@ -154,14 +169,20 @@ app.get('/camera-request', async(req, res) => {
     console.log(cameras);
 
     // GetCameraImage portion    
-    const allData = [];
-
     if (cameras == null) {
         res.json(allData);
         return;
     }
 
     for (const camera of cameras) {
+        // force-stop requests that aren't the current request to serve
+        // live-updated as requests come in
+        if (thisReq != reqToServe){
+            console.log("STOPPING REQUEST " + thisReq);
+            allData = ["STOP"];
+            res.json(allData);
+            return;
+        }
         const cameraId = camera.id;
     
         if (!token || !cameraId) {
@@ -206,7 +227,7 @@ app.get('/camera-request', async(req, res) => {
             });    
         }
     }
-
+    console.log("Camera processing complete");
     res.json(allData);
 });
 

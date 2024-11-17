@@ -98,7 +98,7 @@ function TrashMap() {
   };
 
   const handleCameraChange = useCallback(async (ev) => {
-    console.log("here");
+    console.log("Calling events!");
     setLoading(true);
     const coordsURL =
       "/camera-request?corner1=" +
@@ -111,8 +111,17 @@ function TrashMap() {
       ev.detail.bounds.west;
     const response = await fetch("http://localhost:5000" + coordsURL);
     const data = await response.json();
-    setResponse(data);
-    setLoading(false);
+    console.log("testing list first entry for flag? ", data[0]);
+    if (data[0] != 'STOP'){
+      console.log("Done!")
+      console.log(data);
+      setResponse(data);
+      setLoading(false);        
+    }
+    else {
+      console.log("Cancel Loading");
+      // setLoading(true);
+    }
   });
 
   return (
