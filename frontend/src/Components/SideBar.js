@@ -1,28 +1,30 @@
 import React, { useState } from "react";
-import Dropdown from "./Dropdown"; // Import the Dropdown component
 import "./SideBar.css";
+import Dropdown from "./Dropdown";
 
 function SideBar() {
+    const [dropdown1Open, setDropdown1Open] = useState(false);
+    const [dropdown2Open, setDropdown2Open] = useState(false);
+
     const [selectedItems, setSelectedItems] = useState({
-        dropdown1: null, // Stores selected city
-        dropdown2: null, // Stores selection for another menu
+        dropdown1: "seattle", // Default value for the first dropdown
+        dropdown2: "submenu2_1", // Default value for the second dropdown
     });
 
-    const handleSelectionChange = (event) => {
-        const { name, value } = event.target;
+    const handleSelectionChange = (name, value) => {
         setSelectedItems((prevState) => ({
             ...prevState,
-            [name]: value,
+            [name]: value, // Update the selected value for the corresponding dropdown
         }));
     };
 
     // Define the cities list, marking some as disabled
     const cities = [
-        { value: "seattle", label: "Seattle", disabled: false }, // Clickable
-        { value: "los_angeles", label: "Los Angeles", disabled: true }, // Clickable
-        { value: "new_york", label: "New York", disabled: true }, // Disabled
-        { value: "chicago", label: "Chicago", disabled: true }, // Clickable
-        { value: "houston", label: "Houston", disabled: true }, // Disabled
+        { value: "seattle", label: "Seattle", disabled: false },
+        { value: "los_angeles", label: "Los Angeles", disabled: true },
+        { value: "new_york", label: "New York", disabled: true },
+        { value: "chicago", label: "Chicago", disabled: true },
+        { value: "houston", label: "Houston", disabled: true },
     ];
 
     // Define another list of options for the second dropdown (example)
